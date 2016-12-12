@@ -16,6 +16,7 @@
                 <tr>
                     <th>Name</th>
                     <th>E-mail</th>
+                    <th></th>
                 </tr>
             </thead>
             <c:forEach items="${notes}" var="note">
@@ -25,6 +26,15 @@
                     </td>
                     <td>
                         <c:out value="${note.email}"/>
+                    </td>
+                    <td>
+                        <spring:url value="/notes/{noteId}/edit" var="noteEdit">
+                            <spring:param name="noteId" value="${note.id}"/>
+                        </spring:url>
+
+                        <a href="${fn:escapeXml(noteEdit)} ">
+                            <c:out value="Change note"/>
+                        </a>
                     </td>
                 </tbody>
             </c:forEach>

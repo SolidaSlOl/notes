@@ -31,4 +31,9 @@ public class NoteServiceImpl implements NoteService {
     public List<Note> findAll() {
         return this.noteRepository.findAll();
     }
+
+    @Override
+    public Note findById(final Integer id) {
+        return this.noteRepository.findOne(id);
+    }
 }

@@ -15,4 +15,6 @@ public interface NoteService {
     void save(Note note, User currentUser);
 
     List<Note> findAll();
+
+    Note findById(Integer id);
 }

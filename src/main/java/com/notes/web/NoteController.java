@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,17 +28,39 @@ public class NoteController {
     NoteService noteService;
 
     @GetMapping(value = "/new")
-    public final String initLinkCreateForm(final Model model) {
+    public final String initNoteCreateForm(final Model model) {
         final Note note = new Note();
         model.addAttribute("note", note);
         return "notes/createOrUpdateNoteForm";
     }
 
     @PostMapping(value = "/new")
-    public final String processLinkCreateForm(
+    public final String processNoteCreateForm(
         @Valid final Note note,
         final BindingResult result,
         final Model model
+    ) {
+        if (result.hasErrors()) {
+            return "notes/createOrUpdateNoteForm";
+        }
+        this.noteService.save(note, this.userService.findCurrentUser());
+        return "redirect:/";
+    }
+
+    @GetMapping(value = "/{id}/edit")
+    public final String initNoteUpdateForm(
+        @PathVariable("id") final Integer id, final Model model
+    ) {
+        final Note note = this.noteService.findById(id);
+        model.addAttribute("note", note);
+        return "notes/createOrUpdateNoteForm";
+    }
+
+    @PostMapping(value = "{id}/edit")
+    public final String processNoteUpdateForm(
+        @Valid final Note note,
+        final BindingResult result,
+        @PathVariable("id") final Integer id
     ) {
         if (result.hasErrors()) {
             return "notes/createOrUpdateNoteForm";
