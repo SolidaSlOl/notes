@@ -40,9 +40,7 @@ public class SecurityServiceImpl implements SecurityService{
                 );
         authenticationManager.authenticate(token);
         if (token.isAuthenticated()) {
-            SecurityContextHolder.getContext().setAuthentication(
-                token
-            );
+            SecurityContextHolder.getContext().setAuthentication(token);
         }
     }
 }

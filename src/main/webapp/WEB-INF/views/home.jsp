@@ -10,5 +10,6 @@
     <c:if test="${pageContext.request.userPrincipal.name != null}">
 
     </c:if>
+
 </notes:layout>
 
