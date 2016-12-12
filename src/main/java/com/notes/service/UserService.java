@@ -10,7 +10,21 @@ import com.notes.model.User;
  */
 public interface UserService {
 
-    void save(User user);
+    /**
+     * Save user.
+     * @param user User
+     */
+    void register(User user);
 
+    /**
+     * Find user by username.
+     * @param username Username
+     */
     User findByUsername(String username);
+
+    /**
+     * Find current logged in user.
+     * @return User
+     */
+    User findCurrentUser();
 }

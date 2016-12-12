@@ -5,8 +5,10 @@ import com.notes.repository.RoleRepository;
 import com.notes.repository.UserRepository;
 import java.util.HashSet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,17 +23,29 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleRepository roleRepository;
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private SecurityService securityService;
 
     @Override
-    public void save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRoles(new HashSet<>(roleRepository.findAll()));
-        userRepository.save(user);
+    @Transactional
+    public void register(final User user) {
+        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        user.setRoles(new HashSet<>(this.roleRepository.findAll()));
+        this.userRepository.save(user);
+        this.securityService.autologin(
+            user.getUsername(), user.getPasswordConfirm()
+        );
     }
 
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public User findCurrentUser() {
+        return this.userRepository.findByUsername(SecurityContextHolder
+            .getContext().getAuthentication().getName());
     }
 }

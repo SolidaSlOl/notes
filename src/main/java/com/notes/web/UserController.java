@@ -40,9 +40,9 @@ public class UserController {
     ) {
         userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "users/registration";
         }
-        userService.save(userForm);
+        userService.register(userForm);
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/";
     }
@@ -54,10 +54,5 @@ public class UserController {
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
         return "users/login";
-    }
-
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
-        return "home";
     }
 }
