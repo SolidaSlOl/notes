@@ -24,4 +24,20 @@ public class HomeController {
         mav.addObject("notes", this.noteService.findAll());
         return mav;
     }
+
+    @RequestMapping(value = "/success", method = RequestMethod.GET)
+    public final ModelAndView success() {
+        ModelAndView mav = new ModelAndView("home");
+        mav.addObject("notes", this.noteService.findAll());
+        mav.addObject("message", "Email sent successfully");
+        return mav;
+    }
+
+    @RequestMapping(value = "/fail", method = RequestMethod.GET)
+    public final ModelAndView fail() {
+        ModelAndView mav = new ModelAndView("home");
+        mav.addObject("notes", this.noteService.findAll());
+        mav.addObject("message", "Email sending failed");
+        return mav;
+    }
 }

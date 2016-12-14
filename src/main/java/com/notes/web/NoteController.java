@@ -1,8 +1,10 @@
 package com.notes.web;
 
+import com.notes.model.Email;
 import com.notes.model.Note;
 import com.notes.service.NoteService;
 import com.notes.service.UserService;
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,8 +39,7 @@ public class NoteController {
     @PostMapping(value = "/new")
     public final String processNoteCreateForm(
         @Valid final Note note,
-        final BindingResult result,
-        final Model model
+        final BindingResult result
     ) {
         if (result.hasErrors()) {
             return "notes/createOrUpdateNoteForm";
@@ -67,5 +68,16 @@ public class NoteController {
         }
         this.noteService.save(note, this.userService.findCurrentUser());
         return "redirect:/";
+    }
+
+    @GetMapping(value = "{id}/send")
+    public final String processEmailSendForm(@PathVariable Integer id) {
+        String receiver = this.noteService.findById(id).getEmail();
+        try {
+            new Email().send(receiver);
+            return "redirect:/success";
+        } catch (MessagingException me) {
+            return "redirect:/fail";
+        }
     }
 }

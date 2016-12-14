@@ -12,8 +12,6 @@ set JDBC_DATABASE_PASSWORD=<db-password>
 ```
 ```
 mvn clean install
-```
-```
 java -jar target/dependency/webapp-runner.jar target/*.war
 ```
 Type in browser
