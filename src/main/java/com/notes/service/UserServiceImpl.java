@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Created with IntelliJ IDEA.
+ * User Service implementation.
  * @author Mikita Herasiutsin (mikita.herasiutsin@gmail.com)
  * @version 1.0
  * @since 1.0

@@ -4,7 +4,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 /**
- * Created with IntelliJ IDEA.
+ * Servlet initializer.
  * @author Mikita Herasiutsin (mikita.herasiutsin@gmail.com)
  * @version 1.0
  * @since 1.0

@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * Created with IntelliJ IDEA.
+ * Security config.
  * @author Mikita Herasiutsin (mikita.herasiutsin@gmail.com)
  * @version 1.0
  * @since 1.0

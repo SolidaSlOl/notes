@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 
 /**
- * Created with IntelliJ IDEA.
+ * Note entity.
  *
  * @author Mikita Herasiutsin (mikita.herasiutsin@gmail.com)
  * @version 1.0

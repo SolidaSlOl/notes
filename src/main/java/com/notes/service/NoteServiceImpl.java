@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Created with IntelliJ IDEA.
+ * Note Service implementation.
  * @author Mikita Herasiutsin (mikita.herasiutsin@gmail.com)
  * @version 1.0
  * @since 1.0

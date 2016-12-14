@@ -9,19 +9,14 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 
 /**
- * Created with IntelliJ IDEA.
+ * Email.
  * @author Mikita Herasiutsin (mikita.herasiutsin@gmail.com)
  * @version 1.0
  * @since 1.0
  */
 public class Email {
-    @Autowired
-    Environment env;
-
     private static final String MAIL_HOST = "smtp.gmail.com";
     private static final String MAIL_SUBJECT = "Task completed";
     private static final String MAIL_TEXT = "This email sent via http://best-notes.herokuapp.com\n" +
